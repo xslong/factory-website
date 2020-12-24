@@ -1,6 +1,10 @@
 <template>
-  <div class="homeComponent companyIntroduce">
-    <div class="container">
+  <div class=" companyIntroduce">
+    <!-- 轮播图 -->
+    <!-- <div class="banner_main"></div> -->
+    <banner-main data-aos="fade-up" v-polyfills-aos></banner-main>
+    <!-- 轮播图结束 -->
+    <div class="container homeComponent">
       <!-- 标题 -->
       <!-- <h2 class="homeComponent__title">{{ $t('home.introduce.title') }}</h2> -->
       <h3 class="homeComponent__titleSmall ">
@@ -27,8 +31,8 @@
       />
       <!-- <el-image
         :src=""
-      
-       
+
+
       ></el-image> -->
       <!-- 了解更多 -->
       <div>
@@ -42,7 +46,11 @@
 
 <script>
 import { getCompanyInfo } from '../../apis';
+import bannerMain from 'pages/views/banner_main.vue';
 export default {
+  components: {
+    bannerMain,
+  },
   data() {
     return {
       companyLogo: null,

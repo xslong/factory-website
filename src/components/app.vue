@@ -2,17 +2,13 @@
   <div class="">
     <!-- 页头开始 -->
     <!-- <div class="header_main"></div> -->
-    <lc-header data-aos="fade-up" v-polyfills-aos></lc-header>
+    <!--   <lc-header data-aos="fade-up" v-polyfills-aos></lc-header> -->
     <!-- 页头结束 -->
     <!-- 导航栏 -->
     <!-- <div class="nav_main"></div> -->
     <lc-nav v-if="isApp"></lc-nav>
     <lc-nav v-else data-aos="slide-right" v-polyfills-aos></lc-nav>
     <!-- 导航栏结束 -->
-    <!-- 轮播图 -->
-    <!-- <div class="banner_main"></div> -->
-    <banner-main data-aos="fade-up" v-polyfills-aos></banner-main>
-    <!-- 轮播图结束 -->
     <!-- 主体开始 -->
     <div class="content_main" v-polyfills-aos>
       <!-- <transition :name="transitionName">
@@ -36,12 +32,12 @@
   </div>
 </template>
 <script>
-import lcHeader from 'pages/views/header_main.vue';
+// import lcHeader from 'pages/views/header_main.vue';
 import lcNav from 'pages/views/nav_main.vue';
 import toolBar from 'pages/views/toolbar_main.vue';
 import footerMain from 'pages/views/footer_main.vue';
 import copyrightMain from 'pages/views/copyright_main.vue';
-import bannerMain from 'pages/views/banner_main.vue';
+
 import systemInfo from '../utils/browser';
 // import { getCompanyInfo } from './apis';
 // import eventHub from '../eventHub';
@@ -53,12 +49,11 @@ export default {
     };
   },
   components: {
-    lcHeader,
+    // lcHeader,
     lcNav,
     toolBar,
     footerMain,
     copyrightMain,
-    bannerMain,
   },
   mounted() {
     // getCompanyInfo().then(info => {
