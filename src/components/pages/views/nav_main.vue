@@ -1,17 +1,18 @@
 <template>
   <div class="nav_main">
-    <!-- pc端菜单 -->
-    <el-row class="hidden-xs-only">
-      <el-col :span="24">
+    <el-header class="header">
+      <el-container class="container">
+        <el-aside>
+          <img :src="logo" alt="" width="100px;" />
+        </el-aside>
         <el-menu
           :default-active="activeMenu"
-          class="container"
           mode="horizontal"
           @select="handleSelect"
-          background-color="#1048a0"
+          background-color="#fff"
           :router="true"
-          text-color="#fff"
-          active-text-color="#ffd04b"
+          text-color="#000"
+          active-text-color="#409EFF"
         >
           <template v-for="item in menus">
             <!-- 菜单包含子级 -->
@@ -34,8 +35,11 @@
             }}</el-menu-item>
           </template>
         </el-menu>
-      </el-col>
-    </el-row>
+      </el-container>
+    </el-header>
+
+    <!-- pc端菜单 -->
+
     <!-- 移动端菜单 -->
 
     <el-drawer :visible.sync="isShowNavMenu" :direction="'ltr'" :size="'300px'">
@@ -46,7 +50,7 @@
             class=" container"
             @open="handleOpen"
             @close="handleClose"
-            background-color="#1048a0"
+            background-color="#fff"
             :router="true"
             text-color="#fff"
             active-text-color="#ffd04b"
@@ -85,10 +89,12 @@ import { tree } from '@/utils';
 import { getNavMenusList } from '../../apis';
 
 import eventHub from '../../../eventHub';
+let logo = require('@/assets/images/logo.icon.png');
 
 export default {
   data() {
     return {
+      logo: logo,
       menus: [],
       activeMenu: '/app/home',
       isShowNavMenu: false /**在手机端 采用 抽屉式菜单 */,
@@ -136,12 +142,17 @@ export default {
 .nav_main {
   width: 100%;
   // height: 60px;
-  line-height: 60px;
-  background: #1048a0;
+  background: #fff;
   position: relative;
   // z-index: 3;
 }
 .el-drawer {
-  background-color: #1048a0;
+  background-color: #fff;
+}
+.header .container {
+  border-bottom: 1px solid #dcdfe6;
+}
+.el-menu.el-menu--horizontal {
+  border-bottom: 0;
 }
 </style>

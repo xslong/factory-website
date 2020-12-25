@@ -1,6 +1,11 @@
 <template>
   <div class="banner_main">
-    <el-carousel height="420px;" v-event-system="moveDirection" ref="carousel">
+    <el-carousel
+      style="padding-top:15px;"
+      height="420px;"
+      v-event-system="moveDirection"
+      ref="carousel"
+    >
       <el-carousel-item v-for="item in bannerUrls" :key="item">
         <el-image :src="item" :fit="'fill'">
           <div slot="placeholder" class="image-slot">
