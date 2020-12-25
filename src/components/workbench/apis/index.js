@@ -38,9 +38,27 @@ export function getNavMenusList() {
     },
     {
       name: '职位',
-      state: '/workbench/job',
+      state: '/workbench/job1',
       id: 80002,
       pid: -1,
+    },
+    {
+      name: '职位1',
+      state: '/workbench/job1',
+      id: 80101,
+      pid: 80002,
+    },
+    {
+      name: '职位2',
+      state: '/workbench/job2',
+      id: 80102,
+      pid: 80002,
+    },
+    {
+      name: '职位3',
+      state: '/workbench/job3',
+      id: 80103,
+      pid: 80002,
     },
     {
       name: '订单',

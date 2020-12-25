@@ -24,7 +24,8 @@ const messages = {
 const config = {
   locale: getLocalStorage('i18n', TYPELANG[initLang]),
   // fallbackLocale: 'zh-CN', //没有英文的时候默认中文语言
-  // silentFallbackWarn: true, //抑制警告
+  // silentFallbackWarn: false, //抑制警告
+  silentTranslationWarn: true,
   messages, // set locale messages
 };
 // Create VueI18n instance with options

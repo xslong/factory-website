@@ -2,11 +2,11 @@
   <div class="nav_main">
     <el-header class="header" style="height: 70px;">
       <el-container class="container">
-        <el-aside>
+        <h1>
           <router-link to="/app/home">
             <img :src="logo" alt="" width="100px;" />
           </router-link>
-        </el-aside>
+        </h1>
         <el-menu
           :default-active="activeMenu"
           mode="horizontal"
@@ -17,22 +17,7 @@
           active-text-color="#409EFF"
         >
           <template v-for="item in menus">
-            <!-- 菜单包含子级 -->
-            <el-submenu
-              :index="String(item.id)"
-              :key="item.id"
-              v-if="item.$hasChildren()"
-            >
-              <template slot="title">{{ $t(item.name) }}</template>
-              <el-menu-item
-                :index="item.state"
-                v-for="item in item.children"
-                :key="'lg-' + item.id"
-                >{{ $t(item.name) }}</el-menu-item
-              >
-            </el-submenu>
-            <!-- 菜单不包含子级 -->
-            <el-menu-item :index="item.state" :key="item.id" v-else>{{
+            <el-menu-item :index="item.state" :key="item.id">{{
               $t(item.name)
             }}</el-menu-item>
           </template>
@@ -54,7 +39,7 @@ import { getNavMenusList } from '../apis';
 
 import eventHub from '../../../eventHub';
 let logo = require('@/assets/images/logo.icon.png');
-
+const index = "/workbench";
 export default {
   components: {
   },
@@ -76,13 +61,21 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    // 刷新选中菜单
+    refreshMenu(path) {
+      let activeLevel1 = this.menus.find(e => e.state === path || (e.state !== index && path.startsWith(e.state)));
+      if (activeLevel1) {
+        this.activeMenu = activeLevel1.state;
+      } else {
+        this.activeMenu = '/app/home';
+      }
+    },
   },
   mounted() {
     getNavMenusList().then((res = []) => {
       this.menus = tree.foreachTreeById(res);
+      this.refreshMenu(this.$route.path);
     });
-
-    this.activeMenu = this.$route.path || '/app/home';
     eventHub.$on('isShowNavMenu', () => {
       this.isShowNavMenu = !this.isShowNavMenu;
     });
@@ -93,7 +86,7 @@ export default {
   /**fix当通过原生跳转时 无法触发更新菜单 */
   watch: {
     $route(to) {
-      this.activeMenu = to.path;
+      this.refreshMenu(to.path);
       if (this.isShowNavMenu) {
         this.isShowNavMenu = false;
       }

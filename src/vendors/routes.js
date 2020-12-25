@@ -105,6 +105,18 @@ const router = new Router({
           name: 'workbench.job',
           component: () => import('components/workbench/views/job/index.vue'),
         }, {
+          path: 'job1',
+          name: 'workbench.job1',
+          component: () => import('components/workbench/views/job/index.vue'),
+        }, {
+          path: 'job2',
+          name: 'workbench.job2',
+          component: () => import('components/workbench/views/job/index.vue'),
+        }, {
+          path: 'job3',
+          name: 'workbench.job3',
+          component: () => import('components/workbench/views/job/index.vue'),
+        }, {
           path: 'order',
           name: 'workbench.order',
           component: () => import('components/workbench/views/order/index.vue'),
