@@ -56,7 +56,7 @@ export function getNavMenusList() {
       name: 'menus.customer',
       id: 4,
       state: '/app/customer',
-      pid: -1,
+      pid: 3,
     },
     {
       name: 'menus.faq',

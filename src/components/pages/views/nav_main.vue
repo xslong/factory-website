@@ -34,10 +34,14 @@
               $t('navMain.' + item.name)
             }}</el-menu-item>
           </template>
+          <el-menu-item>
+            <el-button size="medium" @click.stop="$refs.loginDialog.open()">
+              {{ $t('登录') }}
+            </el-button>
+          </el-menu-item>
         </el-menu>
       </el-container>
     </el-header>
-
     <!-- pc端菜单 -->
 
     <!-- 移动端菜单 -->
@@ -81,10 +85,14 @@
         </el-col>
       </el-row>
     </el-drawer>
+
+    <!-- 登录对话框-->
+    <login-dialog ref="loginDialog"></login-dialog>
   </div>
 </template>
 <script>
 import { tree } from '@/utils';
+import LoginDialog from 'pages/views/login_dialog';
 // import { getMenuList } from '@/mocks';
 import { getNavMenusList } from '../../apis';
 
@@ -92,6 +100,9 @@ import eventHub from '../../../eventHub';
 let logo = require('@/assets/images/logo.icon.png');
 
 export default {
+  components: {
+    LoginDialog,
+  },
   data() {
     return {
       logo: logo,
@@ -155,4 +166,15 @@ export default {
 .el-menu.el-menu--horizontal {
   border-bottom: 0;
 }
+/* 菜单鼠标悬浮*/
+.el-menu-item:hover,
+.el-submenu__title:hover {
+  outline: 0 !important;
+  background: white !important;
+}
+/* 菜单选中颜色*/
+/*.el-menu-item.is-active {*/
+/*  color: #fff !important;*/
+/*  background: #409eff !important;*/
+/*}*/
 </style>

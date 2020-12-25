@@ -5,13 +5,15 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['plugin:vue/essential', '@vue/prettier'],
+  extends: ['plugin:vue/essential'],
   parserOptions: {
     parser: 'babel-eslint',
     ecmaVersion: 6,
     sourceType: 'module',
   },
   rules: {
+    'code': 200,
+    'object-curly-spacing': 'off',
     'no-console': 0,
     'no-unused-vars': 'error',
     'no-use-before-define': 'error',
@@ -65,10 +67,10 @@ module.exports = {
     //     { "beforeBlockComment": true }
     // ],
     'lines-around-comment': 0,
-    'newline-after-var': ['error', 'always'],
+    'newline-after-var': 'off',
     'newline-before-return': 'error',
     'no-multi-assign': 'error',
-    'max-params': [1, 3],
+    'max-params': [1, 5],
     'new-cap': [
       'error',
       {
@@ -79,7 +81,7 @@ module.exports = {
     'no-multiple-empty-lines': [
       'error',
       {
-        max: 2,
+        max: 5,
       },
     ],
     'no-shadow-restricted-names': 'error',
