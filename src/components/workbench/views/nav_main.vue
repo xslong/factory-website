@@ -3,7 +3,9 @@
     <el-header class="header" style="height: 70px;">
       <el-container class="container">
         <el-aside>
-          <img :src="logo" alt="" width="100px;" />
+          <router-link to="/app/home">
+            <img :src="logo" alt="" width="100px;" />
+          </router-link>
         </el-aside>
         <el-menu
           :default-active="activeMenu"
@@ -21,90 +23,40 @@
               :key="item.id"
               v-if="item.$hasChildren()"
             >
-              <template slot="title">{{ $t('navMain.' + item.name) }}</template>
+              <template slot="title">{{ $t(item.name) }}</template>
               <el-menu-item
                 :index="item.state"
                 v-for="item in item.children"
                 :key="'lg-' + item.id"
-                >{{ $t('navMain.' + item.name) }}</el-menu-item
+                >{{ $t(item.name) }}</el-menu-item
               >
             </el-submenu>
             <!-- 菜单不包含子级 -->
             <el-menu-item :index="item.state" :key="item.id" v-else>{{
-              $t('navMain.' + item.name)
+              $t(item.name)
             }}</el-menu-item>
           </template>
-          <el-menu-item index="loginDialog">
-            <el-button size="medium" @click.stop="$refs.loginDialog.open()">
-              {{ $t('登录') }}
+          <el-menu-item index="xxxxxx">
+            <el-button size="medium">
+              {{ $t('XXX') }}
             </el-button>
-          </el-menu-item>
-          <el-menu-item index="workbench">
-            <router-link to="/workbench">{{ $t('工作台') }}</router-link>
           </el-menu-item>
         </el-menu>
       </el-container>
     </el-header>
     <!-- pc端菜单 -->
 
-    <!-- 移动端菜单 -->
-
-    <el-drawer :visible.sync="isShowNavMenu" :direction="'ltr'" :size="'300px'">
-      <el-row class="hidden-sm-and-up">
-        <el-col :span="24">
-          <el-menu
-            :default-active="activeMenu"
-            class=" container"
-            @open="handleOpen"
-            @close="handleClose"
-            background-color="#fff"
-            :router="true"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-          >
-            <template v-for="item in menus">
-              <!-- 菜单包含子级 -->
-              <el-submenu
-                :index="String(item.id)"
-                :key="item.id"
-                v-if="item.$hasChildren()"
-              >
-                <template slot="title">{{
-                  $t('navMain.' + item.name)
-                }}</template>
-                <el-menu-item
-                  :index="item.state"
-                  v-for="item in item.children"
-                  :key="item.id"
-                  >{{ $t('navMain.' + item.name) }}</el-menu-item
-                >
-              </el-submenu>
-              <!-- 菜单不包含子级 -->
-              <el-menu-item :index="item.state" :key="item.id" v-else>{{
-                $t('navMain.' + item.name)
-              }}</el-menu-item>
-            </template>
-          </el-menu>
-        </el-col>
-      </el-row>
-    </el-drawer>
-
-    <!-- 登录对话框-->
-    <login-dialog ref="loginDialog"></login-dialog>
   </div>
 </template>
 <script>
 import { tree } from '@/utils';
-import LoginDialog from 'pages/views/login_dialog';
-// import { getMenuList } from '@/mocks';
-import { getNavMenusList } from '../../apis';
+import { getNavMenusList } from '../apis';
 
 import eventHub from '../../../eventHub';
 let logo = require('@/assets/images/logo.icon.png');
 
 export default {
   components: {
-    LoginDialog,
   },
   data() {
     return {
@@ -126,14 +78,11 @@ export default {
     },
   },
   mounted() {
-    // this.menus.forEach(item => (this.name = this.$t(item.name)));
-
     getNavMenusList().then((res = []) => {
       this.menus = tree.foreachTreeById(res);
     });
 
     this.activeMenu = this.$route.path || '/app/home';
-
     eventHub.$on('isShowNavMenu', () => {
       this.isShowNavMenu = !this.isShowNavMenu;
     });
@@ -155,7 +104,6 @@ export default {
 <style lang="scss">
 .nav_main {
   width: 100%;
-  // height: 60px;
   background: #fff;
   position: relative;
   // z-index: 3;

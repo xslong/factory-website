@@ -91,6 +91,35 @@ const router = new Router({
       ],
     },
     {
+      path: '/workbench',
+      name: 'workbench',
+      component: () => import('components/workbench/index.vue'),
+      redirect: '/workbench/home',
+      children: [
+        {
+          path: '/',
+          name: 'workbench.home',
+          component: () => import('components/workbench/home.vue'),
+        }, {
+          path: 'job',
+          name: 'workbench.job',
+          component: () => import('components/workbench/views/job/index.vue'),
+        }, {
+          path: 'order',
+          name: 'workbench.order',
+          component: () => import('components/workbench/views/order/index.vue'),
+        }, {
+          path: 'enterprise',
+          name: 'workbench.enterprise',
+          component: () => import('components/workbench/views/enterprise/index.vue'),
+        }, {
+          path: 'account',
+          name: 'workbench.account',
+          component: () => import('components/workbench/views/account/index.vue'),
+        }
+      ]
+    },
+    {
       path: '*',
       redirect: 'app/home',
     },

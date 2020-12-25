@@ -68,7 +68,7 @@ module.exports = {
     // ],
     'lines-around-comment': 0,
     'newline-after-var': 'off',
-    'newline-before-return': 'error',
+    'newline-before-return': 0,
     'no-multi-assign': 'error',
     'max-params': [1, 5],
     'new-cap': [
